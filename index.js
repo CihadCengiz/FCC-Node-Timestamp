@@ -24,21 +24,17 @@ app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
 });
 
-// let amk = new Date()
-// console.log(amk.toUTCString())
-
-// console.log(new Date("2015-12-25").toUTCString())
-// console.log(new Date("1451001600000").toUTCString())
-console.log(new Date("1451001600000").toUTCString())
-console.log(new Date("2015-12-25").toUTCString())
-
 app.get("/api/", (req,res) => {
   res.json({unix: new Date().getTime(), utc: new Date().toUTCString()})
 })
 
+// console.log(new Date("01 Feb 2013").toUTCString())
+// console.log(new Date(1451001600000))
+// console.log(new Date("2015-12-255").toString())
+
 app.get("/api/:date", (req,res) => {
   let date,unix;
-  if(req.params.date.length > 10){
+  if(new Date(req.params.date).toString() === "Invalid Date"){
     date = new Date(Number(req.params.date)).toUTCString();
     unix = Number(req.params.date);
 
